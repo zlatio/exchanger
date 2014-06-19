@@ -52,8 +52,8 @@ module Exchanger
       end
     end
 
-    def items
-      Item.find_all_by_folder_id(id).each do |item|
+    def items(page = 1, per_page = 20)
+      Item.find_all_by_folder_id(id, page, per_page).each do |item|
         item.parent_folder = self
       end
     end

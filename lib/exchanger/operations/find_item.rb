@@ -4,7 +4,7 @@ module Exchanger
   # http://msdn.microsoft.com/en-us/library/aa566107.aspx
   class FindItem < Operation
     class Request < Operation::Request
-      attr_accessor :folder_id, :traversal, :base_shape, :email_address
+      attr_accessor :folder_id, :traversal, :base_shape, :page, :per_page, :email_address
 
       # Reset request options to defaults.
       def reset
@@ -22,6 +22,10 @@ module Exchanger
                 xml.ItemShape do
                   xml.send "t:BaseShape", base_shape.to_s.camelize
                 end
+
+                offset = (page > 1 ? (page-1) * per_page : 0)
+                xml.IndexedPageItemView("MaxEntriesReturned" => per_page, "Offset" => offset, "BasePoint"=> "Beginning")
+
                 xml.ParentFolderIds do
                   if folder_id.is_a?(Symbol)
                     xml.send("t:DistinguishedFolderId", "Id" => folder_id) do

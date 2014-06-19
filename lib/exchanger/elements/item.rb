@@ -46,8 +46,8 @@ module Exchanger
       response.items
     end
 
-    def self.find_all_by_folder_id(folder_id, email_address = nil)
-      response = FindItem.run(:folder_id => folder_id, :email_address => email_address)
+    def self.find_all_by_folder_id(folder_id, page, per_page, email_address = nil)
+      response = FindItem.run(:folder_id => folder_id, :page => page, :per_page => per_page, :email_address => email_address)
       response.items
     end
 
