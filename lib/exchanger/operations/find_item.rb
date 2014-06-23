@@ -23,7 +23,7 @@ module Exchanger
                   xml.send "t:BaseShape", base_shape.to_s.camelize
                 end
 
-                offset = (page > 1 ? (page-1) * per_page : 0)
+                offset = (page > 1 ? ((page-1) * per_page) : 0)
                 xml.IndexedPageItemView("MaxEntriesReturned" => per_page, "Offset" => offset, "BasePoint"=> "Beginning")
 
                 xml.ParentFolderIds do

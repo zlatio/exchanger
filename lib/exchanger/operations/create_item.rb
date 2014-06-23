@@ -19,6 +19,7 @@ module Exchanger
         @folder_id = :contacts
         @email_address = nil
         @items = []
+        @send_meeting_invitations = 'SendToAllAndSaveCopy'
       end
 
       def to_xml
